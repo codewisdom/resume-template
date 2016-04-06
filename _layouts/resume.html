@@ -46,37 +46,23 @@
         <header class="section-header">
           <h2>Experience</h2>
         </header>
-        {% for post in site.posts %}
+        {% assign experiences = site.experiences | sort: 'date' %}
+        {% for ex in experiences reversed %}
         <!-- Duplicate these resume-item elements and edit accordingly for each job you want to add here -->
         <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
-          <h3 class="resume-item-title" itemprop="name">{{ post.title }}</h3>
-          <h4 class="resume-item-details" itemprop="description">{{ post.description }}</h4>
-          <p class="resume-item-copy">{{ content }}</p>
+          <h3 class="resume-item-title" itemprop="name">{{ ex.title }}</h3>
+          <h4 class="resume-item-details" itemprop="description">{{ ex.details }}</h4>
+          <p class="resume-item-copy">{{ ex.content }}</p>
+          {% if ex.items %}
           <ul class="resume-item-list">
-            {% for item in post.items % }
+            {% for item in ex.items %}
               <li>{{ item }}</li>
             {% endfor %}
           </ul>
-          <p class="resume-item-copy">If you're going to copy paste markup, or edit it, just be sure to keep the appropriate classnames on your new elements for styling purposes.</p>
+          {% endif %}
 
         </div><!-- end of resume-item -->
         {% endfor %}
-
-        <!-- another resume item -->
-        <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
-          <h3 class="resume-item-title" itemprop="name">Sir Putt-A-Lot's Merrie Olde Fun Centre</h3>
-          <h4 class="resume-item-details" itemprop="description">Windmill Crank Operator &bull; Jun, 1978 &mdash; Sept, 1979</h4>
-          <p class="resume-item-copy">If your stint was shorter, feel free to be brief and just call out the most meaningful points of your role. Be concise, and be meaninful. The person reading just needs enough to want to talk to you more about your experience.</p>
-
-        </div><!-- end of resume-item -->
-
-        <!-- by now you're getting the picture... -->
-        <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
-          <h3 class="resume-item-title" itemprop="name">Simpson Lazer Tag</h3>
-          <h4 class="resume-item-details" itemprop="description">Front Desk Attendant &bull; Jun, 1975 &mdash; May, 1978</h4>
-          <p class="resume-item-copy">Boy, when Marge first told me she was going to the Police Academy, I thought it would be fun and exciting, you know, like the movie... Spaceballs. But instead, it's been painful and disturbing, like the movie Police Academy.</p>
-
-        </div><!-- end of resume-item -->
 
       </section>
       <!-- end Experience -->
