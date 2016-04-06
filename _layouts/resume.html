@@ -46,8 +46,8 @@
         <header class="section-header">
           <h2>Experience</h2>
         </header>
-        {% assign experiences = site.experiences | sort: 'date' %}
-        {% for ex in experiences reversed %}
+        {% assign experience = site.experience | sort: 'date' %}
+        {% for ex in experience reversed %}
         <!-- Duplicate these resume-item elements and edit accordingly for each job you want to add here -->
         <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/Organization">
           <h3 class="resume-item-title" itemprop="name">{{ ex.title }}</h3>
@@ -75,12 +75,21 @@
         <header class="section-header">
           <h2>Education</h2>
         </header>
-
+        {% assign education = site.education | sort: 'date' %}
+        {% for ed in education reversed %}
         <div class="resume-item" itemscope itemprop="worksFor" itemtype="http://schema.org/CollegeOrUniversity">
-          <h3 class="resume-item-title" itemprop="name">Springfield College</h3>
-          <h4 class="resume-item-details" itemprop="description">Associates Degree, Business Management &bull; 1984 &mdash; 1986</h4>
-          <p class="resume-item-copy">If you had any meaningful roles at college, feel free to write about them here.</p>
+          <h3 class="resume-item-title" itemprop="name">{{ ed.title }}</h3>
+          <h4 class="resume-item-details" itemprop="description">{{ ed.details }}</h4>
+          <p class="resume-item-copy">{{ ed.content }}</p>
+          {% if ed.items %}
+          <ul class="resume-item-list">
+            {% for item in ed.items %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
+        {% endfor %}
 
       </section>
       <!-- end Education -->
@@ -93,18 +102,25 @@
         <header class="section-header">
           <h2>Projects</h2>
         </header>
-
+        {% assign projects = site.projects | sort: 'date' %}
+        {% for pr in projects reversed %}
         <div class="resume-item">
-          <h3 class="resume-item-title"><a href="http://donutlocator.io">donutfinder.io</a></h3>
-          <h4 class="resume-item-details">Founder & Primary Developer &bull; 2012 &mdash; Present</h4>
-          <p class="resume-item-copy">Donut Locator is an open source node/ember app that lets users find donuts within a defined radius from their home.</p>
+          {% if pr.title_link %}
+          <h3 class="resume-item-title" itemprop="name"><a href="http://{{ pr.title }}">{{ pr.title }}</a></h3>
+          {% else %}
+          <h3 class="resume-item-title" itemprop="name">{{ pr.title }}</h3>
+          {% endif %}
+          <h4 class="resume-item-details" itemprop="description">{{ pr.details }}</h4>
+          <p class="resume-item-copy">{{ pr.content }}</p>
+          {% if pr.items %}
+          <ul class="resume-item-list">
+            {% for item in pr.items %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
-
-        <div class="resume-item">
-          <h3 class="resume-item-title">Springfield Donut Eater's User Group</h3>
-          <h4 class="resume-item-details">Co-Founder & Organizer &bull; 2007 &mdash; Present</h4>
-          <p class="resume-item-copy">DEUG is a local monthly meetup in Springfield where we share all the latest tips and tricks for dat donut lifestyle. I organize the group, and typically eat most of the donuts.</p>
-        </div>
+        {% endfor %}
 
       </section>
       <!-- end Projects -->

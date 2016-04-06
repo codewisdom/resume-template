@@ -46,7 +46,9 @@ resume_social_links:
 resume_theme:                   default
 
 collections:
-  - experiences
+  - experience
+  - education
+  - projects
 
 # Note: when editing locally, remember to restart
 # your Jekyll server when you edit this file. Changes
