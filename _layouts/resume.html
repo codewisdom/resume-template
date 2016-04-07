@@ -103,18 +103,18 @@
           <h2>Projects</h2>
         </header>
         {% assign projects = site.projects | sort: 'date' %}
-        {% for pr in projects reversed %}
+        {% for project in projects reversed %}
         <div class="resume-item">
           {% if pr.title_link %}
-          <h3 class="resume-item-title" itemprop="name"><a href="http://{{ pr.title }}">{{ pr.title }}</a></h3>
+          <h3 class="resume-item-title" itemprop="name"><a href="http://{{ project.title }}">{{ project.title }}</a></h3>
           {% else %}
-          <h3 class="resume-item-title" itemprop="name">{{ pr.title }}</h3>
+          <h3 class="resume-item-title" itemprop="name">{{ project.title }}</h3>
           {% endif %}
-          <h4 class="resume-item-details" itemprop="description">{{ pr.details }}</h4>
-          <p class="resume-item-copy">{{ pr.content }}</p>
-          {% if pr.items %}
+          <h4 class="resume-item-details" itemprop="description">{{ project.details }}</h4>
+          <p class="resume-item-copy">{{ project.content }}</p>
+          {% if project.items %}
           <ul class="resume-item-list">
-            {% for item in pr.items %}
+            {% for item in project.items %}
               <li>{{ item }}</li>
             {% endfor %}
           </ul>
@@ -134,20 +134,20 @@
           <h2>Skills</h2>
         </header>
 
+        {% assign skills = site.skills | sort: 'position' %}
+        {% for skill in skills %}
         <div class="resume-item">
-          <h4 class="resume-item-details">Donut design</h4>
-          <p class="resume-item-copy">Sprinkle art, icing design, eclair management, taste testing, donut/coffee pairing research</p>
+          <h4 class="resume-item-details" itemprop="description">{{ skill.details }}</h4>
+          <p class="resume-item-copy">{{ skill.content }}</p>
+          {% if skill.items %}
+          <ul class="resume-item-list">
+            {% for item in skill.items %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
-
-        <div class="resume-item">
-          <h4 class="resume-item-details">Craft beer brewing</h4>
-          <p class="resume-item-copy">Hops inspection, brew testing, distribution management, bottle label design, festival and event management</p>
-        </div>
-
-        <div class="resume-item">
-          <h4 class="resume-item-details">Family leadership</h4>
-          <p class="resume-item-copy">Bread winning, conflict resolution, couch inspection, TV longevity testing</p>
-        </div>
+        {% endfor %}
 
       </section>
       <!-- end Skills -->

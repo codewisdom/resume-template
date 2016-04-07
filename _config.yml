@@ -49,6 +49,8 @@ collections:
   - experience
   - education
   - projects
+  - skills
+
 
 # Note: when editing locally, remember to restart
 # your Jekyll server when you edit this file. Changes
